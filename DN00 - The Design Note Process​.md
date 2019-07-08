@@ -100,7 +100,7 @@ and representatives across the project community should be given an
 opportunity to influence the decisions. On the other hand, the content
 of a usage guide or the implementation details of a user interface
 screen would not likely require the design note process. These tasks may
-benefit from other design artifacts -- such as wireframe mockups
+benefit from other design artifacts -- such as wire frame mockups
 provided by a designer to guide the development of a user interface
 screen. However, such artifacts would be outside the scope of the design
 note process.
@@ -130,9 +130,9 @@ The steps of the design note process are as follows:
 
 4. **The working group writes a design note using the design note
    template**. The design note template is available in the
-   design\_notes folder of the project's git repo. Design note numbers
+   design\_notes folder of the project's git repository. Design note numbers
    are assigned sequentially in order of request by placing the first
-   draft of the design note in the git repo (either directly or through
+   draft of the design note in the git repository (either directly or through
    the moderator) using the next available number. Design note drafts
    are marked with "Draft" status to encourage interested parties to
    read them. The working group may circulate early drafts of the
