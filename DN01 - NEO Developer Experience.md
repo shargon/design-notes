@@ -1,3 +1,4 @@
+<!-- markdownlint-enable -->
 # DN01 - NEO Developer Experience
 
 - Author: Harry Pierson (harrypierson@ngd.neo.org)
@@ -33,7 +34,46 @@ Core NEO platform is focused on building the powerful capabilities for developer
 to deliver Smart Economy solutions. The NEO Developer Experience is focused on
 making the Smart Economy develpment as easy as possible.
 
+- first principles
+
 ## Developing for the Smart Economy
+
+## Blockchain dApp Architecture
+
+Management of digital assets is a critical enabling feature of the Smart Economy.
+The NEO Whitepaper identifies blockchain technology as the critical infrastructure needed to enable digital assets
+
+The NEO blockchain is a peer-to-peer network topology running across a
+decentralized networks of machines, 
+
+The NEO blockchain utilizes two strategies for communication between nodes in
+the network. 
+
+
+
+The first strategy is a connection-oriented, full-duplex protocol running on top of TCP and/or WebSockets.
+
+
+https://docs.neo.org/en-us/network/network-protocol.html
+
+ Nodes using this protocol typically
+establish long-lived connections to multiple other nodes in the network. These
+long-lived connections allow for efficient communication between consensus nodes
+and they enable changes to the system - for example, a new block being created -
+to be broadcast across the entire network. Nodes using this protocol typically have
+a full copy of the blockchain data local to the node. 
+
+The second strategy for communication within the blockchain network is a stateless,
+request-response protocol. This protocol leverages [JSON-RPC](https://www.jsonrpc.org/specification)
+on top of HTTP. Unlike the 
+
+
+
+
+
+
+
+
 
 | off-chain  | on-chain  | in-chain       |
 | --         | --        | --             |
@@ -55,14 +95,12 @@ projects.
 
 ## Scenarios
 
-### Developer Tools
+### Work with the developer ecosystem I already know.
 
-#### Go where the developers already are
+As per the official whitepaper, NEO is designed to integrate into existing
+mainstream developer ecosystems. 
 
-
-
-#### Make it easy to aquire the libraries and tools needed for Smart Economy development
-
+### Make it easy to get started.
 
 It must be easy for developers to aquire the t
 
@@ -72,38 +110,13 @@ Most language ecosystems have a package management system for
 * NuGet for .NET
 * VS Marketplace for Visual Studio Code
 
-#### Make it easy to get started
 
 new project templates
 
-#### Personal Blockchain
 
-#### Debugger
+### A Blockchain optimized development and testing
 
-#### Development Lifecycle
-
-
-### Guidance
-
-#### Getting Started Guidance
-
-#### Advanced Guidance
-
-
-
-
-
-As per the official whitepaper[^1], NEO integrates into existing
-mainstream developer ecosystems.
-
--   New project templates, including new smart contracts and new dApp
-    templates
-
--   
-
-### A Blockchain Optimized Development and Testing
-
-Today, NEO provides two clients to connect to a blockchain instance:
+Today, NEO provides two official clients to connect to a blockchain instance:
 neo-cli and neo-gui. These clients can connect MainNet, TestNet or can
 be used to run a private blockchain instance. These clients are used to
 run consensus nodes and by real end users to transfer assets on the
@@ -117,63 +130,37 @@ as it does in their development environment. NEO Express will run on the
 developer's local machine, using as few resources as needed to host the
 blockchain instance.
 
-NEO Express is not designed for creating or managing a production
-blockchain instance where the nodes are running on separate physical
-machines. Automating the creation of a production private blockchain
-instance is an important scenario in general, but it\'s not a developer
-scenario for NEO Express.
+* Blockchain Explorer integrated into tool
 
-While NEO Express will be further detailed in a future design note, here
-is a quick summary of its capabilities:
+### Debug my smart contracts
 
--   A developer can quickly create a new blockchain instance on their
-    machine via the command line. No manual wallet creation or hand
-    editing of json files required.
+### Manage My dApp for the Entire Application Lifecycle
 
--   A developer can have multiple NEO Express blockchains on their
-    machine. Developers often work on multiple projects at a time. Even
-    individual projects may need multiple development blockchains for
-    different usage scenarios (front end vs. back end, dev vs. test,
-    etc). These different blockchains can be running on the local
-    machine at the same time (subject to available machine resources)
+Development doesn't end with deployment. In many ways, deploment represents the start of the real work
 
--   Developers can create wallet accounts for use on NEO Express
-    blockchains. These wallet accounts will have user friendly names
-    like "Alice" and "Bob" instead of base-58 encoded account hashes
-    like "AJzoeKrj7RHMwSrPQDPdv61ciVEYpmhkjk". As these wallet accounts
-    are designed for dev scenarios, they can optionally be created
-    without a password.
+* deployment to mainnet 
+* Monitoring a deployed dApps
+* Associating events in remote clients, on chain clients and smart contracts
 
--   Developers can transfer assets - NEO, GAS and NEP-5 -- between
-    wallet accounts easily and quickly. This includes transferring
-    genesis block NEO of a newly created blockchain instance to a
-    standard wallet account. Wallet accounts can earn and claim GAS as
-    they would on MainNet or TestNet.
+### Give me guidance
 
--   Developers can easily change the rate at which a given NEO Express
-    blockchain instance creates blocks. To simulate the conditions of
-    MainNet, it can run at 15 seconds per block. To facilitate inner
-    loop development and the creation of GAS, it can run as fast as 1
-    second per block.
+#### Getting Started Guidance
 
--   Developers can snapshot, rollback, import and export the state of
-    the blockchain. Snapshot and Rollback allows for repeatable
-    automated testing. Import/export is similar to offline packages of
-    blockchain data NGD makes available to speed up network
-    synchronization on MainNet and TestNet
+#### Advanced Guidance
 
--   Developers can explore the state of the blockchain, inspecting
-    individual accounts, blocks and transactions.
+#### Show me what a blockchain can do
 
-NEO Express is a command line tool for developers to use in the
-development and testing of NEO Smart Contracts. It builds on the same
-core NEO platform as NEO-CLI and NEO-GUI while providing unique
-capabilities specific to the developer scenario
+sample app
 
-### Developer Tool Acquisition
 
-[^1]: NEO Whitepaper <https://docs.neo.org/en-us/whitepaper.html>
 
-[^2]: Source: Stack Overflow 2018 Developer Survey, Most Popular
-    Development Environments
-    <https://insights.stackoverflow.com/survey/2018/#technology-_-most-popular-development-environments>
+
+
+
+
+
+
+
+
+
+
