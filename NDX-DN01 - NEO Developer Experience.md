@@ -1,5 +1,5 @@
 <!-- markdownlint-enable -->
-# DN01 - NEO Developer Experience
+# NDX-DN01 - NEO Developer Experience
 
 - Author: Harry Pierson (harrypierson@ngd.neo.org)
 - Status: Draft
@@ -15,33 +15,47 @@ individual capabilities will be implemented.
 
 > "Make the impossible possible, the possible easy, the easy elegant." - Moshé Feldenkrais
 
-Broad adoption is critical for  NEO to deliver on the
+Broad adoption is critical for the NEO platform to deliver on the
 [Smart Economy vision](https://docs.neo.org/en-us/whitepaper.html#neo-design-goals-smart-economy)
 outlined in the [NEO Whitepaper](https://docs.neo.org/en-us/whitepaper.html).
 As the tech industry has seen play out many times, developers are critical to platform
 adoption.
 
-Developers need two - somewhat contradictory - things
+Developers desire two - somewhat contradictory - things: Capability and Simplicity.
 
-- Make it powerful
-- Make it easy
+Capability in this context means the raw capabilities of the underlying NEO platform.
+Today, NEO provides capabilities for the decentalized management of programmable
+digital assets via blockchain and smart contract technology. These capabiliites
+provide a trusted, intermediary-free technology solution for problems that have
+traditionally required a trusted central authority to solve. Futher capabilities
+for the NEO platform include digital idenity, decentralized file/data storage and
+a blockchain oracle. Generally speaking, the more capabilities provided by the core
+NEO platform, the more powerful solutions developers can build.
 
-Like all humans, developers want things to be easy. However, developers are also
-driven by challenge. This challenge may be finanical in nature ("I want to make money
-on what I create") but it may not.
+On the other hand, developers want their jobs to be easy and the tools they use
+to be simple. They want to be able to focus on the solution they are building, not
+learning the platform they are building their solution on. Several of NEO's
+technology choices are intended to simplify the experience for Smart Economy
+developers building on the NEO platform. For example, by providing libraries and
+Smart Contract compilers for multiple languages (C#, Java, Python and JavaScript
+to name a few), the NEO platform enables developers to build Smart Contracts using
+a language they already know instead of forcing them to learn something new.
 
-Core NEO platform is focused on building the powerful capabilities for developers
-to deliver Smart Economy solutions. The NEO Developer Experience is focused on
-making the Smart Economy develpment as easy as possible.
+While improving the core NEO platform capability is a critical task, this Design
+Note and others that follow in the series are focused on the NEO developer experience.
+As such, they will be more focused on the simplicity side of the platform 
 
-- first principles
+Note, Design Notes related to the NEO Developer Experience will be prefixed with
+"NDX" (i.e. NEO Developer eXperience).
+
 
 ## Developing for the Smart Economy
 
-## Blockchain dApp Architecture
+Blockchain dApp Architecture
 
 Management of digital assets is a critical enabling feature of the Smart Economy.
-The NEO Whitepaper identifies blockchain technology as the critical infrastructure needed to enable digital assets
+The NEO Whitepaper identifies blockchain technology as the critical infrastructure
+needed to enable digital assets
 
 The NEO blockchain is a peer-to-peer network topology running across a
 decentralized networks of machines, 
@@ -51,7 +65,8 @@ the network.
 
 
 
-The first strategy is a connection-oriented, full-duplex protocol running on top of TCP and/or WebSockets.
+The first strategy is a connection-oriented, full-duplex protocol running on top
+of TCP and/or WebSockets.
 
 
 https://docs.neo.org/en-us/network/network-protocol.html
@@ -95,12 +110,12 @@ projects.
 
 ## Scenarios
 
-### Work with the developer ecosystem I already know.
+### Work with the developer ecosystem I already know
 
 As per the official whitepaper, NEO is designed to integrate into existing
 mainstream developer ecosystems. 
 
-### Make it easy to get started.
+### Make it easy to get started
 
 It must be easy for developers to aquire the t
 
@@ -113,6 +128,8 @@ Most language ecosystems have a package management system for
 
 new project templates
 
+
+### Have a tight developer inner loop
 
 ### A Blockchain optimized development and testing
 
