@@ -11,6 +11,10 @@ experience for developers targeting the NEO platform. This note is intended to
 be high level and aspirational. Further design notes will specify in detail how
 individual capabilities will be implemented.
 
+Note, design notes related to the NEO Developer Experience should be prefixed with
+"NDX". For example, this design note is designated "NDX-DN01" to indicate "NEO
+Developer Experience Design Note #1".
+
 ## Overview
 
 > "Make the impossible possible, the possible easy, the easy elegant." - Moshé Feldenkrais
@@ -41,13 +45,11 @@ Smart Contract compilers for multiple languages (C#, Java, Python and JavaScript
 to name a few), the NEO platform enables developers to build Smart Contracts using
 a language they already know instead of forcing them to learn something new.
 
-While improving the core NEO platform capability is a critical task, this Design
-Note and others that follow in the series are focused on the NEO developer experience.
-As such, they will be more focused on the simplicity side of the platform 
-
-Note, Design Notes related to the NEO Developer Experience will be prefixed with
-"NDX" (i.e. NEO Developer eXperience).
-
+While improving the core NEO platform capability is a critical task, this design
+note and others that follow in the NDX series are focused on delivering a world-class
+developer experience for the core NEO platform. As such, they will be primarily
+focused on simplifying a Smart Economy developer's life rather than detailing new
+capabilities of the core NEO platform itself.
 
 ## Developing for the Smart Economy
 
