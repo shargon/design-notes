@@ -132,7 +132,11 @@ in-chain to manage the flow of tokens between users.
 
 ## Developer Scenarios
 
-### Work with the development language ecosystem I already know
+Note, as per this design note's abstract, details for each of the following
+sections will be fleshed out in separate design notes. These sections are
+intentionally high level and aspirational.
+
+### Work With Existing Development Language Ecosystems
 
 As per the official white paper, NEO is designed to integrate into existing
 development language ecosystems. The goal of this approach is to enable developers
@@ -149,8 +153,8 @@ to that ecosystem.
   an implementation of the peer-to-peer network protocol as well as many of the
   core types such as block and transaction.
   - Note, this does not need to be a full consensus node implementation. An
-    extensible node framework for on-chain nodes is likely to be more useful to
-    developers than a consensus node implementation.
+    extensible framework for building on-chain nodes is likely to be more useful
+    to developers than a consensus node implementation.
 - For **in-chain** development, developers need a compiler than can convert
   smart contracts written in their language of choice to NeoVM byte code.
   Additionally they need reference libraries for NeoVM capabilities for
@@ -159,15 +163,14 @@ to that ecosystem.
   
 Ideally, the development model for each aspect of the blockchain application
 architecture would be designed to work together as a whole, rather than as a
-set of loosely related frameworks and tools. For example, there should be a
-common set of types and services that provide a similar developer experience
-across the various aspects of blockchain application architecture. For example,
-common tasks such as invoking a smart contract or processing a ledger block
-should be similar (if not identical) for both off-chain and smart contract
-developers. The underlying implementation of the types and services will vary,
-but the APIs should feel the same.
+set of loosely related frameworks and tools. In particular, developers should
+be able to move between different aspects without having to change their
+development approach. For example, the APIs for invoking a smart contract
+should be similar (if not identical) in off-chain libraries, on-chain
+frameworks and in-chain reference libraries. The underlying implementation of
+these APIs will vary, but the public surface area should feel the same.
 
-### Make it easy to get started
+### Make It Easy To Get Started
 
 It must be easy for developers to acquire the tools and libraries they need
 to build Smart Ecosystem solutions on the NEO platform.
@@ -177,62 +180,71 @@ distribution of tools and libraries. For example, [NuGet](https://www.nuget.org/
 is the package manager for .NET libraries, but it is also used for distributing
 [custom templates](https://docs.microsoft.com/en-us/dotnet/core/tools/custom-templates)
 as well as [global tools](https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools).
+Likewise, [npx](https://www.npmjs.com/package/npx) can execute scripts directly
+from the [NPM](https://www.npmjs.com/) package repository and
+[templates](https://www.npmjs.com/search?q=keywords:yeoman-generator) for the
+[Yeoman](https://yeoman.io/) scaffolding tool are distributed via NPM.
 
+Additionally, tools like Visual Studio Code and online services like GitHub are
+extensible and work across multiple developer language ecosystems. Marketplaces
+for [Visual Studio Code](https://marketplace.visualstudio.com/vscode) and
+[GitHub](https://github.com/marketplace) provide a developer-friendly mechanism
+for distributing custom extensions to these tools and services.
 
+NEO's developer libraries and tools should be distributed using the existing
+package management and tool marketplace options available for a given
+development language ecosystem.
 
-NEO needs to publish libraries and
-command-line tooling via package management systems like 
-and [NPM](https://www.npmjs.com/). 
+As an example, all of the libraries and most of the tools for .NET NEO development
+should be distributed via NuGet. This includes the various libraries for on/off/in
+chain development, custom templates for new NEO projects, the NEON compiler that
+compiles managed DLLs to NeoVM byte code and the NEO Express development
+blockchain (described in the next section). Extensions to existing developer IDEs
+such as Visual Studio and Visual Studio Code would be distributed via their
+respective marketplaces. A single "get started" web page would provide all links
+for installing these various components.
 
-Additionally, IDE tooling like Visual Studio
-Code and online developer services like GitHub and Azure DevOps are extensible,
-with custom marketplaces
+### A Blockchain Optimized Development and Testing
 
-] have a 
-
-* NPM for JavaScript
-* NuGet for .NET
-* VS Marketplace for Visual Studio Code
-
-
-
-
-As an example, for .NET developers NEO needs to provide
-
-- On/Off/In-Chain libraries as NuGet packages
-- [Custom project templates](https://docs.microsoft.com/en-us/dotnet/core/tools/custom-templates#installing-a-template)
-  for dotnet cli
-- Smart contract debugging and deployment extensions to VSCode
-
-### Have a tight developer inner loop
-
-### A Blockchain optimized development and testing
-
-Today, NEO provides two official clients to connect to a blockchain instance:
-neo-cli and neo-gui. These clients can connect MainNet, TestNet or can
+Today, NEO provides two official client applications for blockchain network
+nodes: neo-cli and neo-gui. These clients can connect MainNet, TestNet or can
 be used to run a private blockchain instance. These clients are used to
 run consensus nodes and by real end users to transfer assets on the
-MainNet. As such, they must be optimized for security and other
+MainNet. As such, neo-cli and neo-gui must be optimized for security and other
 production usage scenarios.
 
-NEO Express is a new NEO blockchain client, optimized for development
+NEO Express is a new NEO blockchain client application, optimized for development
 scenarios. It will be built on the same NEO platform core as neo-cli and
 neo-gui are, ensuring that developer's code will run the same on MainNet
 as it does in their development environment. NEO Express will run on the
 developer's local machine, using as few resources as needed to host the
 blockchain instance.
 
-* Blockchain Explorer integrated into tool
+NEO Express will have support for a variety of developer-only scenarios.
 
-### Debug my smart contracts
+- Simple privatenet instance creation
+- Password-free wallet and asset management (including genesis NEO)
+- Simple smart contract deployment and invocation
+- Blockchain fast-forward (for GAS creation) and rollback (for testing purposes)
+- Blockchain import/export (for test and collaboration purposes)
+- Privatenet instance management and blockchain explorer integrated into Visual
+  Studio Code
 
-### Manage My dApp for the Entire Application Lifecycle
+### Smart Contract Debugging and Testing
 
-Development doesn't end with deployment. In many ways, deploment represents the start of the real work
+### Manage the Blockchain Application Life Cycle
 
-* deployment to mainnet 
-* Monitoring a deployed dApps
-* Associating events in remote clients, on chain clients and smart contracts
+Modern application development - blockchain or otherwise - has increasingly
+adopted a more operational practice. Typically, a "DevOps" based life cycle
+this starts with automated build and deployment of application assets and flows
+through to telemetry collection that drives future development decisions.
+
+Examples of DevOps capabilities needed for NEO blockchain applications:
+
+- Continuous Integration/Delivery of NEO smart contracts
+- Application Performance Management for NEO blockchain applications across all
+  three taxonomy aspects (on/off/in chain)
+- Decentralized application logging and telemetry
 
 ### Give me guidance
 
@@ -243,16 +255,3 @@ Development doesn't end with deployment. In many ways, deploment represents the 
 #### Show me what a blockchain can do
 
 sample app
-
-
-
-
-
-
-
-
-
-
-
-
-
