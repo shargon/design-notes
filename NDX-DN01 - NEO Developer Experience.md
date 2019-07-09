@@ -40,11 +40,11 @@ powerful solutions developers can build.
 On the other hand, developers want their jobs to be easy and the tools they use
 to be simple. They want to be able to focus on the solution they are building, not
 learning the platform they are building their solution on. Several of NEO's
-technology choices are intended to simplify the experience for Smart Economy
-developers building on the NEO platform. For example, by providing libraries and
-Smart Contract compilers for multiple languages (C#, Java, Python and JavaScript
-to name a few), the NEO platform enables developers to build Smart Contracts using
-a language they already know instead of forcing them to learn something new.
+technology choices are intended to simplify the experience for developers building
+on the NEO platform. For example, by providing libraries and Smart Contract
+compilers for multiple languages (C#, Java, Python and JavaScript to name a few),
+the NEO platform enables developers to build Smart Contracts using a language
+they already know instead of forcing them to learn something new.
 
 While improving the core NEO platform capability is a critical task, this design
 note and others that follow in the NDX series are focused on delivering a world-class
@@ -173,7 +173,7 @@ these APIs will vary, but the public surface area should feel the same.
 ### Make It Easy To Get Started
 
 It must be easy for developers to acquire the tools and libraries they need
-to build Smart Ecosystem solutions on the NEO platform.
+to build solutions on the NEO platform.
 
 These days, most language ecosystems use a package management system for
 distribution of tools and libraries. For example, [NuGet](https://www.nuget.org/)
@@ -232,6 +232,33 @@ NEO Express will have support for a variety of developer-only scenarios.
 
 ### Smart Contract Debugging and Testing
 
+Mitch Denny [describes](https://mitchdenny.com/the-inner-loop/) the "inner loop"
+as "the iterative process that a developer performs when they write, build and
+debug code". These steps are typically performed in some type of integrated
+development environment (aka IDE) like Visual Studio Code. The IDE provides a
+source editing experience - often enhanced with auto complete and refactoring
+services specific to the development language in use. Build tools - such as
+Microsoft's C# compiler and NEO's NEON compiler - are typically command line
+applications, but the IDE provide a mechanism to launch these tools from the
+user interface. That leaves debugging (and testing) as the final aspect of the
+inner loop that needs to be addressed for NEO developers.
+
+The NEO smart contract debugger will implement Microsoft's
+[Debug Adapter Protocol](https://microsoft.github.io/debug-adapter-protocol/),
+enabling it to be easily integrated into a variety of existing IDEs, including
+Visual Studio and Visual Studio Code. As NEO supports building smart contracts
+in a variety of languages, the NEO Debug Adapter will need to be extensible in
+order for it to support a variety of smart contract languages.
+
+In order to provide test and debug repeatability, developers need the ability to
+manage the blockchain state precisely. As stated in a previous section, NEO
+Express will support developer scenarios related to state management such as roll
+back and import/export. Additionally, the NEO smart contract debugger will support
+an isolated mode where the blockchain related services such as transaction
+access and contract storage will be emulated. This isolated NeoVM instance will
+work with both with the smart contract debugger as well as the NEO test
+infrastructure.
+
 ### Manage the Blockchain Application Life Cycle
 
 Modern application development - blockchain or otherwise - has increasingly
@@ -246,12 +273,6 @@ Examples of DevOps capabilities needed for NEO blockchain applications:
   three taxonomy aspects (on/off/in chain)
 - Decentralized application logging and telemetry
 
-### Give me guidance
+### Developer Guidance and Sample Blockchain Applications
 
-#### Getting Started Guidance
-
-#### Advanced Guidance
-
-#### Show me what a blockchain can do
-
-sample app
+TBD.
