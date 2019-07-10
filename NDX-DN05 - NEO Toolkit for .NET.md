@@ -1,5 +1,5 @@
 <!-- markdownlint-enable -->
-# NDX-DN03 - NEO .NET Development Toolkit
+# NDX-DN03 - NEO Toolkit for .NET
 
 - Author: Harry Pierson (harrypierson@ngd.neo.org)
 - Status: Stub
