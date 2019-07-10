@@ -56,8 +56,8 @@ targeting the NEO platform.
 In order to build the tools, libraries and other assets that provide a world-class
 developer experience, it is necessary to understand the architecture of typical systems
 that are built on the NEO platform. While this is a large solution space with many
-possible technology approaches, several key elements of architecture appear to be
-common across solutions.
+possible approaches, several key elements of architecture appear to be common
+across solutions.
 
 Programmable management of digital assets is a critical enabling feature of the
 Smart Economy. The NEO white paper identifies blockchain technology with digital
@@ -271,7 +271,3 @@ Examples of DevOps capabilities needed for NEO blockchain applications:
 - Application Performance Management for NEO blockchain applications across all
   three taxonomy aspects (on/off/in chain)
 - Decentralized application logging and telemetry
-
-### Developer Guidance and Sample Blockchain Applications
-
-TBD.
