@@ -19,70 +19,72 @@ Developer Experience Design Note #1".
 
 > "Make the impossible possible, the possible easy, the easy elegant." - Moshé Feldenkrais
 
-Broad adoption is critical for the NEO platform to deliver on the
+The NEO platform needs broad adoption in order to deliver on the
 [Smart Economy vision](https://docs.neo.org/en-us/whitepaper.html#neo-design-goals-smart-economy)
 outlined in the [NEO white paper](https://docs.neo.org/en-us/whitepaper.html).
 As the tech industry has seen play out many times, developers are critical to platform
 adoption.
 
-Developers desire two - somewhat contradictory - things: Capability and Simplicity.
+Developers desire two - somewhat contradictory - things: Capability and Productivity.
 
-Capability in this context means the raw capabilities of the underlying NEO platform.
-Today, NEO provides capabilities for the decentralized management of programmable
-digital assets via blockchain and smart contract technology. These capabilities
-provide a trusted, intermediary-free technology solution for problems that have
-traditionally required a trusted central authority to solve. Further capabilities
-for the NEO platform include digital identity, decentralized file/data storage and
-a blockchain oracle for access to data from outside the blockchain. Generally
-speaking, the more capabilities provided by the core NEO platform, the more
-powerful solutions developers can build.
+Capability in this context means the raw capabilities of the underlying platform.
+Generally speaking, the more capabilities provided by a platform, the more powerful
+solutions developers can build and the more business opportunity developers have.
 
-On the other hand, developers want their jobs to be easy and the tools they use
-to be simple. They want to be able to focus on the solution they are building, not
-learning the platform they are building their solution on. Several of NEO's
-technology choices are intended to simplify the experience for developers building
-on the NEO platform. For example, by providing libraries and Smart Contract
-compilers for multiple languages (C#, Java, Python and JavaScript to name a few),
-the NEO platform enables developers to build Smart Contracts using a language
-they already know instead of forcing them to learn something new.
+To date, the NEO platform has provided decentralized management of digital assets
+via blockchain and smart contract technology. NEO continues to innovate, adding
+new capabilities such distributed decentralized object storage and internet
+resource access.  These powerful capabilities provide an economic and technical
+foundation for building next-generation Smart Economy systems.
 
-While improving the core NEO platform capability is a critical task, this design
-note and others that follow in the NDX series are focused on delivering a world-class
-developer experience for the core NEO platform. As such, they will be primarily
-focused on simplifying a Smart Economy developer's life rather than detailing new
-capabilities of the core NEO platform itself.
+On the other hand, developers need to be productive. They want their tools to help
+them capitalize on market opportunities quickly. A developer's focus needs to be
+on the solution they are building, not the platform they are building their
+solution on.
+
+NEO enables developer productivity in multiple ways. For example, NEO provides
+libraries and smart contract compilers for multiple programming languages (C#,
+Java, Python and JavaScript to name a few). This approach enables developers to
+build solutions on NEO using a programming language that they already know.
+
+This design note and others that follow in the NDX series will focus on delivering
+tools, libraries and other assets that improve the productivity of developers
+targeting the NEO platform.
 
 ## Developing for the Smart Economy
 
-In order to specify the tools needed to provide a world-class developer experience,
-it is first necessary to understand the architecture of a typical Smart Economy solution.
-While Smart Economy is a large solution space with many possible technology approaches,
-several key elements of architecture appear to be common across most solutions.
+In order to build the tools, libraries and other assets that provide a world-class
+developer experience, it is necessary to understand the architecture of typical systems
+that are built on the NEO platform. While this is a large solution space with many
+possible technology approaches, several key elements of architecture appear to be
+common across solutions.
 
 Programmable management of digital assets is a critical enabling feature of the
 Smart Economy. The NEO white paper identifies blockchain technology with digital
 identity and smart contracts as the critical platform pieces that the NEO platform
 provides to applications for the Smart Economy.
 
-### Blockchain Decentralized Application Architecture
+### Decentralized Blockchain Application Architecture
 
 At it's core, a blockchain is an open, decentralized, cryptographically secure
 ledger of transactions. The blockchain runs on a disparate set of nodes,
-generating ledger entries known as "blocks" that are open for all to inspect and
-are impossible to forge.
+generating ledger transactions that are grouped into "blocks". These transactions
+specify digital asset ownership, are open for all to inspect and are impossible
+to forge. Ledger transactions can be submitted from external sources or can be
+programmatically generated by smart contracts.
 
 Nodes in the blockchain network communicate using a full-duplex, peer-to-peer
 [protocol](https://docs.neo.org/en-us/network/network-protocol.html)
-running on top of TCP and/or WebSockets. This protocol drives the
+running on top of TCP and/or WebSockets. This protocol is used by the
 [consensus algorithm](https://docs.neo.org/en-us/basic/consensus/whitepaper.html)
-used to generate new blocks as well as to synchronize data between nodes in the
-blockchain.
+to generate new blocks of transactions. It is also used to synchronize data
+between nodes in the blockchain.
 
 Nodes using the peer-to-peer protocol typically establish long-lived connections
 to multiple other nodes in the blockchain. These long-lived connections allow for
-efficient communication between consensus nodes and they enable notifications
-about changes to the system - for example, the creation of a new block - to be
-broadcast across the entire network.
+efficient communication between nodes and they enable notifications about changes
+to the system - for example, the creation of a new block - to be broadcast across
+the entire network.
 
 Nodes using this peer-to-peer protocol typically have a full copy of the
 blockchain ledger locally. The data generated by the blockchain is non-trivial.
@@ -92,7 +94,7 @@ accelerating as the NEO ecosystem scales.
 
 Between the connection-oriented network protocol and the need to store large amounts
 of blockchain data, it's reasonable to expect that most nodes in the blockchain
-network would be dedicated, always-on, always-connected server class machines.
+network would be dedicated machines that are always-on and always-connected.
 This implies that the blockchain must provide a mechanism for end-points that are
 not a part of blockchain network to interact with the blockchain without being
 always connected or having a fully synchronized copy of the blockchain data.
@@ -106,13 +108,12 @@ contracts from end-points that aren't a part of the blockchain network. This
 interface uses [JSON-RPC](https://www.jsonrpc.org/specification) running on top
 of HTTP.
 
-Other blockchain ecosystems refer to devices accessing the network via a
-remote API as "lite" nodes while devices in the blockchain network are "full"
-nodes. However, this terminology is be somewhat confusing in the NEO ecosystem.
-The [NEO Consensus white paper](https://docs.neo.org/en-us/basic/consensus/whitepaper.html)
-divides so called "full" nodes between "ordinary" nodes and "consensus" nodes
-(also in places called "bookkeeping" nodes). As such, this document proposes a
-slightly different taxonomy:
+> Note, some other blockchain ecosystems refer to end-points accessing the network
+> via a remote API as "lite" nodes while end-points in the blockchain network are
+> called "full" nodes.
+
+This document proposes the following taxonomy to describe the different locations
+that decentralized blockchain application code can run:
 
 - Code running on end-points that are accessing the block chain network via the
   remote API JSON-RPC interface will be referred to in this document as **off-chain**.
@@ -122,10 +123,11 @@ slightly different taxonomy:
 - Code running on block chain nodes as part of smart contracts will be referred
   to in this document as **in-chain**.
 
-Decentralized blockchain applications typically have application code running in
-at least two different locations. For example, a blockchain token would have
-wallet code running on off-chain devices as well as smart contracts running
-in-chain to manage the flow of tokens between users.
+Decentralized blockchain applications will have application code running in at least
+one of these locations, often more than one. For example, a decentralized
+collectable asset game could have game play code running on off-chain devices
+as well as smart contracts running in-chain to manage the transfer of
+assets between users.
 
 ## Developer Scenarios
 
@@ -213,9 +215,9 @@ production usage scenarios.
 NEO Express is a new NEO blockchain client application, optimized for development
 scenarios. It will be built on the same NEO platform core as neo-cli and
 neo-gui are, ensuring that developer's code will run the same on MainNet
-as it does in their development environment. NEO Express will run on the
-developer's local machine, using as few resources as needed to host the
-blockchain instance.
+as it does in their development environment. NEO Express will support multiple
+deployment scenarios, from a single node blockchain running on a developer's
+machine to a multi node blockchain shared by a development team.
 
 NEO Express will have support for a variety of developer-only scenarios.
 
