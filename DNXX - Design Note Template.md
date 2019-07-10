@@ -72,7 +72,8 @@ x = -1; // ok
 y = 24; // exception
 
 define foo(z) : negative(foo(z)), prime(z) -> - z;
-x = foo(y);  // No checks performed since z is guaranteed to be prime, and foo(y) is guaranteed to be negative
+x = foo(y);  // No checks performed since z is guaranteed to be prime
+             // and foo(y) is guaranteed to be negative
 ```
 
 Duis iaculis ante vel nunc gravida sagittis. Praesent vulputate semper nibh
