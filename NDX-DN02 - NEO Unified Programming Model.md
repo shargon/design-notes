@@ -14,6 +14,13 @@ code in a decentralized blockchain application.
 
 Need to identify types and operations used across in/on/off chain development
 
+- [RPC API Docs](https://docs.neo.org/en-us/node/cli/latest-version/api.html)
+- [Smart Contract Reference](https://docs.neo.org/en-us/sc/reference/api.html)
+
+> Note, today we expose pure request/response APIs for off-chain access.
+> However, we could also expose WebSocket APIs to off chain clients, so that
+> we could further unify the programming models.
+
 Types
 
 - UInt160 and UInt256

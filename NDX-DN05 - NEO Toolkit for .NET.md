@@ -21,6 +21,8 @@ used by .NET developers to target the NEO platform.
   compiling .NET Standard assemblies -> NeoVM)
 - on/off chain apps are basically standard .NET apps (cmd line, GUI, mobile, etc)
   that use a NEO library distributed via NuGet. simply dotnet add package and you're done.
+  - Note, we already can do this for on-chain development by simply adding the neo package via nuget.
+    However, I'm thinking that we could provide a better and more modular framework for on-chain developers
 - in chain apps have custom inner loop:
   1. New contract: "dotnet new neocontract"
   2. Edit contract: This is just the standard VSCode editing experience. No extension needed
