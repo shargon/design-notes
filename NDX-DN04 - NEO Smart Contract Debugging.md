@@ -20,3 +20,7 @@ This design note describes the features and design of the NEO Smart Contract Deb
 - Will need NEO compilers to generate debug info in addition to NeoVM byte code. At a minimum, this will include
   sequence points that map source code to byte code + function variable/argument information for variable inspection.
   Eventually need to standardize on a data format for this info, but that can be longer term
+
+- [Managed implementation of the VS Code Debug Protocol](https://www.nuget.org/packages/Microsoft.VisualStudio.Shared.VsCodeDebugProtocol)
+  no source for some reason.
+- [Sample Debug Adapter](https://github.com/microsoft/VSDebugAdapterHost/tree/master/src/sample/SampleDebugAdapter)
