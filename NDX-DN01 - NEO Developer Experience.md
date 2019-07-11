@@ -271,3 +271,17 @@ Examples of DevOps capabilities needed for NEO blockchain applications:
 - Application Performance Management for NEO blockchain applications across all
   three taxonomy aspects (on/off/in chain)
 - Decentralized application logging and telemetry
+
+### Grow the Blockchain Development Community with Guidance
+
+Estimates suggest the mainstream developer community is at least two orders of
+magnitude larger than the blockchain developer community. Growing the NEO development
+community will require reaching out to developers without a background in blockchain
+application development.
+
+Much of NEO's documentation to date is white papers and reference documentation.
+Mainstream developer without blockchain experience will need more scenario focused
+guidance to help them understand how blockchain in general and NEO in particular
+fits into their existing developer toolbox. Additionally, these developers will need
+guidance detailing how NEO's intrinsic economic model effects both technical system
+design as well organization and funding of system development itself.
