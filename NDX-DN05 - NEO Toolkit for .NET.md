@@ -28,5 +28,6 @@ used by .NET developers to target the NEO platform.
   2. Edit contract: This is just the standard VSCode editing experience. No extension needed
   3. Compile contract: neocontract template includes custom (inline) build tasks in proj file
      to invoke NEON during build
-  4. Debug Contract: Run the contract in the NEO contract Debugger. VSCode may support extension
-     commands for configuring launch.json file with relevant info (isolated / integrated)
+  4. Debug Contract: Run the contract in the NEO contract Debugger. VSCode debugger extension
+     includes configuration snippets to help developers quickly configure their launch.json
+     file for debugging.
