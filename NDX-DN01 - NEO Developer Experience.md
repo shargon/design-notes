@@ -64,10 +64,10 @@ Smart Economy. The NEO white paper identifies blockchain technology with digital
 identity and smart contracts as the critical platform pieces that the NEO platform
 provides to applications for the Smart Economy.
 
-### Decentralized Blockchain Application Architecture
+### Decentralized NEO Blockchain Application Architecture
 
-At it's core, a blockchain is an open, decentralized, cryptographically secure
-ledger of transactions. The blockchain runs on a disparate set of nodes,
+At it's core, the NEO blockchain is an open, decentralized, cryptographically
+secure ledger of transactions. The blockchain runs on a disparate set of nodes,
 generating ledger transactions that are grouped into "blocks". These transactions
 specify digital asset ownership, are open for all to inspect and are impossible
 to forge. Ledger transactions can be submitted from external sources or can be
@@ -101,12 +101,11 @@ always connected or having a fully synchronized copy of the blockchain data.
 
 The NEO blockchain provides such a mechanism. In addition to the connected,
 full-duplex protocol used for inter-node communication, the NEO blockchain
-provides a stateless, request-response
-[remote API interface](https://docs.neo.org/en-us/node/cli/latest-version/api.html)
+provides a stateless [remote API interface](https://docs.neo.org/en-us/node/cli/latest-version/api.html)
 for programmatically accessing the blockchain and invoking deployed smart
-contracts from end-points that aren't a part of the blockchain network. This
-interface uses [JSON-RPC](https://www.jsonrpc.org/specification) running on top
-of HTTP.
+contracts from end-points that aren't connected to the  blockchain network via
+the protocol described above. This remote API interface uses
+[JSON-RPC](https://www.jsonrpc.org/specification) running on top of HTTP.
 
 > Note, some other blockchain ecosystems refer to end-points accessing the network
 > via a remote API as "lite" nodes while end-points in the blockchain network are
@@ -125,38 +124,81 @@ complexity when deciding where their HTML creation code should run.
 Likewise, decentralized app developers need to weigh similar tradeoffs when
 deciding to run their code on an end-point connected to the blockchain via the
 connected, full-duplex protocol versus the remote API interface. Furthermore, in
-addition to code running on blockchain nodes, decentralized app developers can
-also deploy application code as smart contracts.
+addition to code running on blockchain nodes or remote end-points, decentralized
+app developers can also deploy application code as smart contracts.
 
-This document proposes the following taxonomy to describe the different locations
-that decentralized blockchain application code can run:
+NEO blockchain applications will have application code running in at least of one
+these locations, often more than one. For example, the
+[NEO Exchange Developers Guide](https://docs.neo.org/docs/en-us/exchange/general.html)
+recommends deploying a neo-cli node with a set of standard plugins. These plugins
+provide additional behavior for nodes connected to the blockchain via the connected,
+full-duplex protocol. In particular, this behavior exposes custom remote API
+methods, enabling exchange end-points that are not a part of the NEO blockchain
+to get asset balances and to transfer assets for the exchange customers.
+
+This document proposes the following taxonomy to describe the different SDKs
+that NEO blockchain applications can use:
 
 - Code running on end-points that are connected to the blockchain network via the
   connected, full-duplex protocol and have a full copy of the blockchain data
-  will be referred to in this document as **on-chain**.
+  will be referred to in this document as using a **Node SDK**. The existing
+  neo-cli plugin mechanism is an example of a **Node SDK**.
 - Code running on end-points that are accessing the blockchain network via the
-  remote API JSON-RPC interface will be referred to in this document as **off-chain**.
+  remote API JSON-RPC interface will be referred to in this document as using a
+  **Remote SDK**. [NeoModules](https://github.com/CityOfZion/NeoModules) is an
+  example of a **Remote SDK**.
 - Code running on blockchain nodes as part of smart contracts will be referred
-  to in this document as **in-chain**.
+  to in this document as using a **Contract SDK**.
+  [Neo.SmartContract.Framework](https://github.com/neo-project/neo-devpack-dotnet/tree/cc5af48f63f5881710459415e817a90ae396934a/src/Neo.SmartContract.Framework)
+  is an example of a  **Contract SDK**.
 
-> Note, in traditional distributed applications, different locations are known as
-> "tiers". We should probably settle on a similar term here, though neither "tier"
-> nor "location" seems like a good choice. For now, this document uses "location".
+The development model for each SDK type needs to work together as a whole, rather
+than as a set of loosely related frameworks and tools. As developers weigh location
+tradeoffs, they need the ability to move code between different locations. It's
+not enough just to support the same programming languages for Node, Remote and
+Contract development. If each location has a different programming model, moving
+code between the locations is not feasible.
 
-Decentralized blockchain applications will have application code running in at
-least of one these locations, often more than one. For example, a decentralized
-collectable asset game would likely have game play code running on off-chain
-devices as well as smart contracts running in-chain to manage the transfer of
-assets between users.
+This unified programming model for NEO is called NEO-FX. NEO-FX will provide a
+programming model for NEO blockchain developers that looks like this:
 
-The development model for each blockchain application architecture location needs
-to work together as a whole, rather than as a set of loosely related frameworks
-and tools. As developers weigh location tradeoffs, they need the ability to move
-code between different locations. It's not enough just to support the same
-programming languages for on/off/in chain development. If each location has a
-different programming model, moving code between the locations is not feasible.
+<svg width="6.25in" height="2.375in" version="1.1" viewBox="0 0 158.75 60.325" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<defs>
+<clipPath id="a">
+<path d="m0 0h1280v720h-1280z"/>
+</clipPath>
+</defs>
 
-The specifics of the NEO Unified Programming Model is addressed in design note NDX-DN02.
+<g transform="translate(0 -236.67)">
+<rect x="-1.0681e-5" y="284.3" width="158.75" height="12.7" fill="#0055d4"/>
+<rect x="3.464e-7" y="268.42" width="158.75" height="12.7" fill="#0055d4"/>
+<rect x="1.8372e-6" y="252.55" width="158.75" height="12.7" fill="#0055d4"/>
+<rect x="107.95" y="236.67" width="50.8" height="12.7" fill="#0055d4"/>
+<rect y="236.67" width="50.8" height="12.7" fill="#0055d4"/>
+<rect x="53.975" y="236.67" width="50.8" height="12.7" fill="#0055d4"/>
+<g transform="matrix(.26458 0 0 .26458 -73.535 154.85)" clip-path="url(#a)" fill="#fff">
+<text transform="translate(450.88,521.28)" fill="#ffffff" font-family="Calibri" font-size="48px" font-weight="400" letter-spacing="0px" word-spacing="0px" style="line-height:125%" xml:space="preserve"><tspan x="0" y="0" font-size="32px"><tspan dx="0" dy="0" fill="#ffffff" font-family="Calibri" font-size="32px" font-weight="400">Fundamental Types</tspan></tspan></text>
+</g>
+<g transform="matrix(.26458 0 0 .26458 -76.554 165.81)" clip-path="url(#a)">
+<text transform="translate(485.76,422.56)" fill="#000000" font-family="Calibri" font-size="48px" font-weight="400" letter-spacing="0px" word-spacing="0px" style="line-height:125%" xml:space="preserve"><tspan x="0" y="0" font-size="32px"><tspan dx="0" dy="0" fill="#ffffff" font-family="Calibri" font-size="32px" font-weight="400">Domain Models</tspan></tspan></text>
+</g>
+<g transform="matrix(.26458 0 0 .26458 -72.593 176.02)" clip-path="url(#a)">
+<text transform="translate(443.36,324)" fill="#000000" font-family="Calibri" font-size="48px" font-weight="400" letter-spacing="0px" word-spacing="0px" style="line-height:125%" xml:space="preserve"><tspan x="0" y="0" font-size="32px"><tspan dx="0" dy="0" fill="#ffffff" font-family="Calibri" font-size="32px" font-weight="400">Service Abstractions</tspan></tspan></text>
+</g>
+<g transform="matrix(.26458 0 0 .26458 -57.057 184.95)" clip-path="url(#a)">
+<text x="310.68079" y="229.61726" fill="#000000" font-family="Calibri" font-size="45.25px" font-weight="400" letter-spacing="0px" text-align="center" text-anchor="middle" word-spacing="0px" style="line-height:100%" xml:space="preserve"><tspan x="310.68079" y="229.61726" fill="#ffffff" font-family="Calibri" font-size="32px" font-weight="400" text-align="center" text-anchor="middle" style="line-height:100%"><tspan fill="#000000" font-size="32px"><tspan dx="0" dy="0" fill="#ffffff" font-family="Calibri" font-size="32px" font-weight="400" text-align="center" text-anchor="middle" style="line-height:100%">Remote </tspan></tspan>SDK</tspan></text>
+</g>
+<g transform="matrix(.26458 0 0 .26458 -78.826 186.46)" clip-path="url(#a)">
+<text transform="translate(549.12,224.48)" x="47.835083" fill="#000000" font-family="Calibri" font-size="45.25px" font-weight="400" letter-spacing="0px" text-align="center" text-anchor="middle" word-spacing="0px" style="line-height:100%" xml:space="preserve"><tspan x="47.835083" y="0" fill="#ffffff" font-family="Calibri" font-size="32px" font-weight="400" text-align="center" text-anchor="middle" style="line-height:100%"><tspan fill="#000000" font-size="32px"><tspan dx="0" dy="0" fill="#ffffff" font-family="Calibri" font-size="32px" font-weight="400" text-align="center" text-anchor="middle" style="line-height:100%">Node </tspan></tspan>SDK</tspan></text>
+</g>
+<g transform="matrix(.26458 0 0 .26458 -100.5 186.31)" clip-path="url(#a)">
+<text transform="translate(806.24,224.48)" x="77.221069" fill="#000000" font-family="Calibri" font-size="45.25px" font-weight="400" letter-spacing="0px" text-align="center" text-anchor="middle" word-spacing="0px" style="line-height:100%" xml:space="preserve"><tspan x="77.221069" y="0" fill="#ffffff" font-family="Calibri" font-size="32px" font-weight="400" text-align="center" text-anchor="middle" style="line-height:100%"><tspan fill="#000000" font-size="32px"><tspan dx="0" dy="0" fill="#ffffff" font-family="Calibri" font-size="32px" font-weight="400" text-align="center" text-anchor="middle" style="line-height:100%">Contract </tspan></tspan>SDK</tspan></text>
+</g>
+<text x="73.025002" y="227.14999" fill="#000000" font-family="sans-serif" font-size="7.7611px" letter-spacing="0px" stroke-width=".26458" word-spacing="0px" style="line-height:1.25" xml:space="preserve"><tspan x="73.025002" y="234.2307" stroke-width=".26458"/></text>
+</g>
+</svg>
+
+The specifics of NEO-FX are addressed in design note NDX-DN02.
 
 ## Developer Scenarios
 
