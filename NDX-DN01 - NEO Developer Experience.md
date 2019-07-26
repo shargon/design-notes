@@ -162,40 +162,44 @@ code between the locations is not feasible.
 This unified programming model for NEO is called NEO-FX. NEO-FX will provide a
 programming model for NEO blockchain developers that looks like this:
 
-<svg width="6.25in" height="2.375in" version="1.1" viewBox="0 0 158.75 60.325" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-<defs>
-<clipPath id="a">
-<path d="m0 0h1280v720h-1280z"/>
-</clipPath>
-</defs>
-
-<g transform="translate(0 -236.67)">
-<rect x="-1.0681e-5" y="284.3" width="158.75" height="12.7" fill="#0055d4"/>
-<rect x="3.464e-7" y="268.42" width="158.75" height="12.7" fill="#0055d4"/>
-<rect x="1.8372e-6" y="252.55" width="158.75" height="12.7" fill="#0055d4"/>
-<rect x="107.95" y="236.67" width="50.8" height="12.7" fill="#0055d4"/>
-<rect y="236.67" width="50.8" height="12.7" fill="#0055d4"/>
-<rect x="53.975" y="236.67" width="50.8" height="12.7" fill="#0055d4"/>
-<g transform="matrix(.26458 0 0 .26458 -73.535 154.85)" clip-path="url(#a)" fill="#fff">
-<text transform="translate(450.88,521.28)" fill="#ffffff" font-family="Calibri" font-size="48px" font-weight="400" letter-spacing="0px" word-spacing="0px" style="line-height:125%" xml:space="preserve"><tspan x="0" y="0" font-size="32px"><tspan dx="0" dy="0" fill="#ffffff" font-family="Calibri" font-size="32px" font-weight="400">Fundamental Types</tspan></tspan></text>
-</g>
-<g transform="matrix(.26458 0 0 .26458 -76.554 165.81)" clip-path="url(#a)">
-<text transform="translate(485.76,422.56)" fill="#000000" font-family="Calibri" font-size="48px" font-weight="400" letter-spacing="0px" word-spacing="0px" style="line-height:125%" xml:space="preserve"><tspan x="0" y="0" font-size="32px"><tspan dx="0" dy="0" fill="#ffffff" font-family="Calibri" font-size="32px" font-weight="400">Domain Models</tspan></tspan></text>
-</g>
-<g transform="matrix(.26458 0 0 .26458 -72.593 176.02)" clip-path="url(#a)">
-<text transform="translate(443.36,324)" fill="#000000" font-family="Calibri" font-size="48px" font-weight="400" letter-spacing="0px" word-spacing="0px" style="line-height:125%" xml:space="preserve"><tspan x="0" y="0" font-size="32px"><tspan dx="0" dy="0" fill="#ffffff" font-family="Calibri" font-size="32px" font-weight="400">Service Abstractions</tspan></tspan></text>
-</g>
-<g transform="matrix(.26458 0 0 .26458 -57.057 184.95)" clip-path="url(#a)">
-<text x="310.68079" y="229.61726" fill="#000000" font-family="Calibri" font-size="45.25px" font-weight="400" letter-spacing="0px" text-align="center" text-anchor="middle" word-spacing="0px" style="line-height:100%" xml:space="preserve"><tspan x="310.68079" y="229.61726" fill="#ffffff" font-family="Calibri" font-size="32px" font-weight="400" text-align="center" text-anchor="middle" style="line-height:100%"><tspan fill="#000000" font-size="32px"><tspan dx="0" dy="0" fill="#ffffff" font-family="Calibri" font-size="32px" font-weight="400" text-align="center" text-anchor="middle" style="line-height:100%">Remote </tspan></tspan>SDK</tspan></text>
-</g>
-<g transform="matrix(.26458 0 0 .26458 -78.826 186.46)" clip-path="url(#a)">
-<text transform="translate(549.12,224.48)" x="47.835083" fill="#000000" font-family="Calibri" font-size="45.25px" font-weight="400" letter-spacing="0px" text-align="center" text-anchor="middle" word-spacing="0px" style="line-height:100%" xml:space="preserve"><tspan x="47.835083" y="0" fill="#ffffff" font-family="Calibri" font-size="32px" font-weight="400" text-align="center" text-anchor="middle" style="line-height:100%"><tspan fill="#000000" font-size="32px"><tspan dx="0" dy="0" fill="#ffffff" font-family="Calibri" font-size="32px" font-weight="400" text-align="center" text-anchor="middle" style="line-height:100%">Node </tspan></tspan>SDK</tspan></text>
-</g>
-<g transform="matrix(.26458 0 0 .26458 -100.5 186.31)" clip-path="url(#a)">
-<text transform="translate(806.24,224.48)" x="77.221069" fill="#000000" font-family="Calibri" font-size="45.25px" font-weight="400" letter-spacing="0px" text-align="center" text-anchor="middle" word-spacing="0px" style="line-height:100%" xml:space="preserve"><tspan x="77.221069" y="0" fill="#ffffff" font-family="Calibri" font-size="32px" font-weight="400" text-align="center" text-anchor="middle" style="line-height:100%"><tspan fill="#000000" font-size="32px"><tspan dx="0" dy="0" fill="#ffffff" font-family="Calibri" font-size="32px" font-weight="400" text-align="center" text-anchor="middle" style="line-height:100%">Contract </tspan></tspan>SDK</tspan></text>
-</g>
-<text x="73.025002" y="227.14999" fill="#000000" font-family="sans-serif" font-size="7.7611px" letter-spacing="0px" stroke-width=".26458" word-spacing="0px" style="line-height:1.25" xml:space="preserve"><tspan x="73.025002" y="234.2307" stroke-width=".26458"/></text>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="228" viewBox="0 0 158.75 60.325">
+  <defs>
+    <clipPath id="a">
+      <path d="M0 0h1280v720H0z"/>
+    </clipPath>
+  </defs>
+  <path fill="#0055d4" d="M0 47.625h158.75v12.7H0zM0 31.75h158.75v12.7H0zM0 15.875h158.75v12.7H0zM107.95 0h50.8v12.7h-50.8zM0 0h50.8v12.7H0zM53.975 0h50.8v12.7h-50.8z"/>
+  <g fill="#fff" clip-path="url(#a)" transform="matrix(.26458 0 0 .26458 -73.535 -81.82)">
+    <text transform="translate(450.88 521.28)" style="line-height:125%;text-align:start" font-family="Calibri" font-size="48" font-weight="400" letter-spacing="0" word-spacing="0">
+      <tspan x="0" y="0" font-size="32"><tspan dx="0" dy="0">Fundamental Types</tspan></tspan>
+    </text>
+  </g>
+  <g clip-path="url(#a)" transform="matrix(.26458 0 0 .26458 -76.554 -70.862)">
+    <text transform="translate(485.76 422.56)" style="line-height:125%;text-align:start" font-family="Calibri" font-size="48" font-weight="400" letter-spacing="0" word-spacing="0">
+      <tspan x="0" y="0" font-size="32"><tspan fill="#fff" dx="0" dy="0">Domain Models</tspan></tspan>
+    </text>
+  </g>
+  <g clip-path="url(#a)" transform="matrix(.26458 0 0 .26458 -72.593 -60.66)">
+    <text transform="translate(443.36 324)" style="line-height:125%;text-align:start" font-family="Calibri" font-size="48" font-weight="400" letter-spacing="0" word-spacing="0">
+      <tspan x="0" y="0" font-size="32"><tspan fill="#fff" dx="0" dy="0">Service Abstractions</tspan></tspan>
+    </text>
+  </g>
+  <g clip-path="url(#a)" transform="matrix(.26458 0 0 .26458 -57.057 -51.728)">
+    <text x="310.681" y="229.617" style="line-height:100%;text-align:center" font-family="Calibri" font-size="45.25" font-weight="400" letter-spacing="0" text-anchor="middle" word-spacing="0">
+      <tspan style="line-height:100%;text-align:center" x="310.681" y="229.617" fill="#fff" font-size="32"><tspan fill="#000"><tspan style="line-height:100%;text-align:center" fill="#fff" dx="0" dy="0">Remote </tspan></tspan>SDK</tspan>
+    </text>
+  </g>
+  <g clip-path="url(#a)" transform="matrix(.26458 0 0 .26458 -78.826 -50.212)">
+    <text x="47.835" transform="translate(549.12 224.48)" style="line-height:100%;text-align:center" font-family="Calibri" font-size="45.25" font-weight="400" letter-spacing="0" text-anchor="middle" word-spacing="0">
+      <tspan style="line-height:100%;text-align:center" x="47.835" y="0" fill="#fff" font-size="32"><tspan fill="#000"><tspan style="line-height:100%;text-align:center" fill="#fff" dx="0" dy="0">Node </tspan></tspan>SDK</tspan>
+    </text>
+  </g>
+  <g clip-path="url(#a)" transform="matrix(.26458 0 0 .26458 -100.5 -50.369)">
+    <text x="77.221" transform="translate(806.24 224.48)" style="line-height:100%;text-align:center" font-family="Calibri" font-size="45.25" font-weight="400" letter-spacing="0" text-anchor="middle" word-spacing="0">
+      <tspan style="line-height:100%;text-align:center" x="77.221" y="0" fill="#fff" font-size="32"><tspan fill="#000"><tspan style="line-height:100%;text-align:center" fill="#fff" dx="0" dy="0">Contract </tspan></tspan>SDK</tspan>
+    </text>
+  </g>
+  <text x="73.025" y="227.15" style="line-height:1.25" stroke-width=".265" font-family="sans-serif" font-size="7.761" font-weight="400" letter-spacing="0" transform="translate(0 -236.675)" word-spacing="0"/>
 </svg>
 
 The specifics of NEO-FX are addressed in design note NDX-DN02.
