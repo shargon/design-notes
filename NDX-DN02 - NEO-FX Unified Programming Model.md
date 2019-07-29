@@ -1,5 +1,5 @@
 <!-- markdownlint-enable -->
-# NDX-DN02 - NEO Unified Programming Model
+# NDX-DN02 - NEO-FX Unified Programming Model
 
 - Author: Harry Pierson (harrypierson@ngd.neo.org)
 - Status: Stub
