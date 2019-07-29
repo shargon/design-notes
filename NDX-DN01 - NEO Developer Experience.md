@@ -20,8 +20,8 @@ Developer Experience Design Note #1".
 > "Make the impossible possible, the possible easy, the easy elegant." - Moshé Feldenkrais
 
 The NEO platform needs broad adoption in order to deliver on the
-[Smart Economy vision](https://docs.neo.org/en-us/whitepaper.html#neo-design-goals-smart-economy)
-outlined in the [NEO white paper](https://docs.neo.org/en-us/whitepaper.html).
+[Smart Economy vision](https://docs.neo.org/docs/en-us/basic/whitepaper.html#fb560064)
+outlined in the [NEO white paper](https://docs.neo.org/docs/en-us/basic/whitepaper.html).
 As the tech industry has seen play out many times, developers are critical to platform
 adoption.
 
@@ -121,15 +121,14 @@ and rendered entirely in the browser. Web app developers have to weigh tradeoffs
 such as network round trips duration, client device performance and programming
 complexity when deciding where their HTML creation code should run.
 
-Likewise, decentralized app developers need to weigh similar tradeoffs when
+Likewise, NEO blockchain app developers need to weigh similar tradeoffs when
 deciding to run their code on an end-point connected to the blockchain via the
 connected, full-duplex protocol versus the remote API interface. Furthermore, in
-addition to code running on blockchain nodes or remote end-points, decentralized
+addition to code running on blockchain nodes or remote end-points, NEO blockchain
 app developers can also deploy application code as smart contracts.
 
-NEO blockchain applications will have application code running in at least of one
-these locations, often more than one. For example, the
-[NEO Exchange Developers Guide](https://docs.neo.org/docs/en-us/exchange/general.html)
+NEO blockchain applications typically span these different modes of development.
+For example, the [NEO Exchange Developers Guide](https://docs.neo.org/docs/en-us/exchange/general.html)
 recommends deploying a neo-cli node with a set of standard plugins. These plugins
 provide additional behavior for nodes connected to the blockchain via the connected,
 full-duplex protocol. In particular, this behavior exposes custom remote API
@@ -153,56 +152,23 @@ that NEO blockchain applications can use:
   is an example of a  **Contract SDK**.
 
 The development model for each SDK type needs to work together as a whole, rather
-than as a set of loosely related frameworks and tools. As developers weigh location
-tradeoffs, they need the ability to move code between different locations. It's
-not enough just to support the same programming languages for Node, Remote and
-Contract development. If each location has a different programming model, moving
-code between the locations is not feasible.
+than as a set of loosely related frameworks and tools. It's not enough that the
+Node, Remote and Contract SDKs support the same programming languages. Developers
+need the ability to move code between SDKs easily. If each SDK has a unique
+programming model, developer productivity will suffer.
 
-This unified programming model for NEO is called NEO-FX. NEO-FX will provide a
-programming model for NEO blockchain developers that looks like this:
+![NEO-FX Layers](neofx-layers.png)
 
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="228" viewBox="0 0 158.75 60.325">
-  <defs>
-    <clipPath id="a">
-      <path d="M0 0h1280v720H0z"/>
-    </clipPath>
-  </defs>
-  <path fill="#0055d4" d="M0 47.625h158.75v12.7H0zM0 31.75h158.75v12.7H0zM0 15.875h158.75v12.7H0zM107.95 0h50.8v12.7h-50.8zM0 0h50.8v12.7H0zM53.975 0h50.8v12.7h-50.8z"/>
-  <g fill="#fff" clip-path="url(#a)" transform="matrix(.26458 0 0 .26458 -73.535 -81.82)">
-    <text transform="translate(450.88 521.28)" style="line-height:125%;text-align:start" font-family="Calibri" font-size="48" font-weight="400" letter-spacing="0" word-spacing="0">
-      <tspan x="0" y="0" font-size="32"><tspan dx="0" dy="0">Fundamental Types</tspan></tspan>
-    </text>
-  </g>
-  <g clip-path="url(#a)" transform="matrix(.26458 0 0 .26458 -76.554 -70.862)">
-    <text transform="translate(485.76 422.56)" style="line-height:125%;text-align:start" font-family="Calibri" font-size="48" font-weight="400" letter-spacing="0" word-spacing="0">
-      <tspan x="0" y="0" font-size="32"><tspan fill="#fff" dx="0" dy="0">Domain Models</tspan></tspan>
-    </text>
-  </g>
-  <g clip-path="url(#a)" transform="matrix(.26458 0 0 .26458 -72.593 -60.66)">
-    <text transform="translate(443.36 324)" style="line-height:125%;text-align:start" font-family="Calibri" font-size="48" font-weight="400" letter-spacing="0" word-spacing="0">
-      <tspan x="0" y="0" font-size="32"><tspan fill="#fff" dx="0" dy="0">Service Abstractions</tspan></tspan>
-    </text>
-  </g>
-  <g clip-path="url(#a)" transform="matrix(.26458 0 0 .26458 -57.057 -51.728)">
-    <text x="310.681" y="229.617" style="line-height:100%;text-align:center" font-family="Calibri" font-size="45.25" font-weight="400" letter-spacing="0" text-anchor="middle" word-spacing="0">
-      <tspan style="line-height:100%;text-align:center" x="310.681" y="229.617" fill="#fff" font-size="32"><tspan fill="#000"><tspan style="line-height:100%;text-align:center" fill="#fff" dx="0" dy="0">Remote </tspan></tspan>SDK</tspan>
-    </text>
-  </g>
-  <g clip-path="url(#a)" transform="matrix(.26458 0 0 .26458 -78.826 -50.212)">
-    <text x="47.835" transform="translate(549.12 224.48)" style="line-height:100%;text-align:center" font-family="Calibri" font-size="45.25" font-weight="400" letter-spacing="0" text-anchor="middle" word-spacing="0">
-      <tspan style="line-height:100%;text-align:center" x="47.835" y="0" fill="#fff" font-size="32"><tspan fill="#000"><tspan style="line-height:100%;text-align:center" fill="#fff" dx="0" dy="0">Node </tspan></tspan>SDK</tspan>
-    </text>
-  </g>
-  <g clip-path="url(#a)" transform="matrix(.26458 0 0 .26458 -100.5 -50.369)">
-    <text x="77.221" transform="translate(806.24 224.48)" style="line-height:100%;text-align:center" font-family="Calibri" font-size="45.25" font-weight="400" letter-spacing="0" text-anchor="middle" word-spacing="0">
-      <tspan style="line-height:100%;text-align:center" x="77.221" y="0" fill="#fff" font-size="32"><tspan fill="#000"><tspan style="line-height:100%;text-align:center" fill="#fff" dx="0" dy="0">Contract </tspan></tspan>SDK</tspan>
-    </text>
-  </g>
-  <text x="73.025" y="227.15" style="line-height:1.25" stroke-width=".265" font-family="sans-serif" font-size="7.761" font-weight="400" letter-spacing="0" transform="translate(0 -236.675)" word-spacing="0"/>
-</svg>
+This unified programming model will provide a common set of fundamental types
+(such as large unsigned integers for hash values and elliptic curves for
+cryptography), domain models (such as blocks and transactions) and service
+abstractions (such as retrieving a transaction or invoking a smart contract). By
+using these common set of types across SDKs, developers will be able to move
+their code between SDKs, ensuring they can run their code in the manner that
+makes most sense for their blockchain application.
 
-The specifics of NEO-FX are addressed in design note NDX-DN02.
+This unified programming model for NEO is called NEO-FX. Further specifics of
+NEO-FX are addressed in design note NDX-DN02.
 
 ## Developer Scenarios
 
@@ -222,16 +188,16 @@ to that ecosystem. As per the Unified Programming Model section above, these
 assets need to be designed to enable developers to move code as freely as possible
 across the different locations.
 
-- For **off-chain** development, developers need libraries to securely manage
+- For **Remote SDK** development, developers need libraries to securely manage
   user wallets and to invoke remote API functions. Most mainstream languages
   provide the core crypto and network capabilities needed to build these libraries.
-- For **on-chain** development, developers needs a framework that provides
+- For **Node SDK** development, developers needs a framework that provides
   an implementation of the peer-to-peer network protocol as well as many of the
   core types such as block and transaction.
-  - Note, this does not need to be a full consensus node implementation. An
-    extensible framework for building on-chain nodes is likely to be more useful
-    to developers than a consensus node implementation.
-- For **in-chain** development, developers need a compiler than can convert
+  - Note, this does not need to be a full consensus node implementation. A plugin
+    base SDK or an extensible framework for building blockchain nodes is likely
+    to be more useful to developers than a consensus node implementation.
+- For **Contract SDK** development, developers need a compiler than can convert
   smart contracts written in their language of choice to NeoVM byte code.
   Additionally they need reference libraries for NeoVM capabilities for
   developers to code and compile against. Developers also need tools for
