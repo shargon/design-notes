@@ -1,3 +1,4 @@
+<!-- markdownlint-enable -->
 # DN00 - The Design Note Process​
 
 - Author: Harry Pierson (harrypierson@ngd.neo.org)
@@ -8,11 +9,10 @@
 This document describes the process for making and disseminating
 architecturally important design decisions through design notes.
 
-Thanks to [Galen
-Hunt](https://www.microsoft.com/en-us/research/people/galenh/) for
-pioneering the use of the design note process and allowing the [xlang
-project](http://github.com/Microsoft/xlang) to use it on an open-source
-project.
+Thanks to [Galen Hunt](https://www.microsoft.com/en-us/research/people/galenh/)
+for pioneering the use of the design note process and allowing the
+[Microsoft xlang project](http://github.com/Microsoft/xlang)
+to use it on an open-source project.
 
 ## The Purpose
 

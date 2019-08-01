@@ -2,7 +2,7 @@
 # NDX-DN01 - NEO Developer Experience
 
 - Author: Harry Pierson (harrypierson@ngd.neo.org)
-- Status: Draft
+- Status: Final Draft
 
 ## Abstract
 

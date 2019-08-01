@@ -1,3 +1,4 @@
+<!-- markdownlint-enable -->
 # DNXX - Design Note Template
 
 - Author: \<insert name here> (\<insert email here>)

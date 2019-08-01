@@ -1,3 +1,4 @@
+<!-- markdownlint-enable -->
 # NDX-DN04 - NEO Smart Contract Debugging
 
 - Author: Harry Pierson (harrypierson@ngd.neo.org)

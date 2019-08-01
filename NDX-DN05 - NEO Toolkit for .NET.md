@@ -1,3 +1,4 @@
+<!-- markdownlint-enable -->
 # NDX-DN05 - NEO Toolkit for .NET
 
 - Author: Harry Pierson (harrypierson@ngd.neo.org)
