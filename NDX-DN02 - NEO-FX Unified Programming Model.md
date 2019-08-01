@@ -7,29 +7,33 @@
 ## Abstract
 
 This design note describes the design of NEO's unified programming
-model - a single programming model for off-chain, on-chain and in-chain
-code in a decentralized blockchain application.
+model - a single programming model for Remote, Node and Contract SDKs
+in a decentralized blockchain application.
 
 # Raw Notes
 
-Need to identify types and operations used across in/on/off chain development
+Need to identify types and operations used for Remote, Node and Contract development.
 
 - [RPC API Docs](https://docs.neo.org/en-us/node/cli/latest-version/api.html)
+- [RPC wrapper code in NEO 3.0](https://github.com/neo-project/neo/pull/850)
 - [Smart Contract Reference](https://docs.neo.org/en-us/sc/reference/api.html)
 
-> Note, today we expose pure request/response APIs for off-chain access.
-> However, we could also expose WebSocket APIs to off chain clients, so that
+> Note, today we expose pure request/response APIs for remote access.
+> However, we could also expose WebSocket APIs to remote clients, so that
 > we could further unify the programming models.
 
-Types
+Fundamental Types
 
 - UInt160 and UInt256
 - BigDecimal
 - Fixed8
+
+Domain Models
+
 - Block
 - Transaction
 
-Operations
+Service Abstractions
 
 - get blocks
 - Invoke smart contracts
