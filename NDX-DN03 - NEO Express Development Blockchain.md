@@ -173,14 +173,16 @@ project, which has not been vetted for security purposes.
 > it would be possible to add support for checkpointing a blockchain instance while
 > it is running.
 
-Checkpoints can be restored, imported or run.
-
-> Checkpoint import has not been implemented yet.
+Checkpoints can be restored or run.
 
 When a checkpoint is restored, the current state of the blockchain is discarded
 and replaced with the contents of the checkpoint. Unless there are other
 checkpoints that were taken after the restored checkpoint, this operation is
 irreversible.
+
+If the blockchain in question has no current state, restoring a checkpoint
+effectively acts as an import. This allows checkpoint files to be shared among
+developers.
 
 When a checkpoint is run, the specified checkpoint is opened in read-only mode.
 Any changes to the blockchain are stored in memory. These changes are discarded
