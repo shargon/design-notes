@@ -209,13 +209,48 @@ so that it would be in a seperate DLL and usable by neo-cli.
 ### Signing
 
 All operations that involve signing - including transfers, GAS claims, contract
-deployments and contract invocation - send the data to be signed back to the RPC
-client. This way, the blockchain instance doesn't need to manage client wallets.
+deployments and contract invocation - serialize the relevant ContractParametersContext
+to JSON and returns it to the RPC client. The RPC client then signs and submits the
+context to the ExpressSubmitSignatures RPC API to be relayed on the blockchain.
+This way, the blockchain instance doesn't need to manage client wallets.
 Even genesis transfer, which requires multiple signatures on multi-node block chains,
 send the to-be-signed data back to the client for signing. Of course, in a
 neo-express blockchain, the private keys for all wallets are stored in the clear
 in a single JSON file. However, the basic client signing model could be used for
 other scenarios involving production blockchains.
+
+This approach to signing is different than the typical approach used to submit transactions
+to a NEO blockchain via RPC. In most cases, the transaction is created locally,
+signed and submitted via the
+[sendrawtransaction](https://docs.neo.org/docs/en-us/reference/rpc/latest-version/api/sendrawtransaction.html)
+RPC API.
+
+### Support for NEO 2 and NEO 3
+
+Currently, NEO Express only supports creating NEO 2 blockchains. However, it has
+been designed to support adding NEO 3 support in the future.
+
+The NEO express project is split across three managed assemblies:
+
+- neo-express is the front end command line driver
+- abstractions contains the types that represent the contents of the neo-express.json
+  file as well as an interface that abstracts the implementation of NEO Express
+  commands
+- express2 is an implementation of the interface defined in the abstractions assembly
+  that implements the NEO 2 version of NEO Express commands
+
+The goal is to be able to add an express3 assembly in the future (after the
+initial NEO 3 preview ships) plus logic to determine the correct NEO version from
+the neo-express.json file. It is expected that the types defined in the abstractions
+assembly will change when NEO 3 support is added.
+
+Many of express commands are implemented as JSON RPC client calls into a running
+NEO-Express blockchain instance. The (potentially incorrect) expectation is that
+both NEO 2 and NEO 3 express implementations will implement the same custom RPC
+APIs, allowing the command line processing code to work with both. For commands
+that aren't implemented as RPC API calls, the abstractions assembly defines an
+interface `INeoBackend` that allows the command line processing code to work with
+both NEO 2 and NEO 3.
 
 ## Future Features
 
