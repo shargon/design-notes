@@ -17,7 +17,7 @@ on several projects at Microsoft and was released publicly as part of
 
 The Design Note process is described in
 [DN00](DN00%20-%20The%20Design%20Note%20Process​.md). This document is
-project independent by design. The remaining documents in this project
+project independent by design. The remaining documents in this repository
 are specific to the NEO developer experience and are prefixed with "NDX".
 
 * [NDX-DN01](NDX-DN01%20-%20NEO%20Developer%20Experience.md) describes
