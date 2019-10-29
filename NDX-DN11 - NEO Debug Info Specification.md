@@ -37,6 +37,7 @@ The NEON-DE compiler emits debug info in a json file with the extension
 interface DebugInformatiom {
     entrypoint: string;
     methods: Method[];
+    events: Event[];
     sequence-points: SequencePoint[]; // unused, to be removed
 }
 
@@ -55,6 +56,14 @@ interface Method {
 interface Variable {
     name: string;
     type: string;
+}
+
+interface Event {
+    name: string;
+    namespace: string;
+    display-name: string;
+    parameters: Variable[];
+    return-type: string;
 }
 
 interface SequencePoint {
@@ -89,8 +98,12 @@ information:
 - Sequence points map individual NeoVM opcode addresses to a sequence
   of text in a source file. Because of the nature of mapping high level
   source code to low level opcodes, there will not be a sequence point
-  for every address in the NeoVM script file. 
+  for every address in the NeoVM script file.
 
 > Note, the `sequence-points` property of the root debug info object
 > is not used by the NEO smart contract debugger and will be removed
 > from the NEON compiler in a future release.
+
+Debug info can also contain an array of Event objects. Event objects have
+parameter and return types like a Method, but have no implementation
+details such as variables, sequence points or start/end addresses.
