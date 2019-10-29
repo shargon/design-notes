@@ -1,8 +1,8 @@
 <!-- markdownlint-enable -->
-# NDX-DN10 - NEO Express Server Mode
+# NDX-DN11 - NEO Debug Info Specification
 
 - Author: Harry Pierson (harrypierson@ngd.neo.org)
-- Status: Stub
+- Status: Draft
 
 ## Abstract
 
