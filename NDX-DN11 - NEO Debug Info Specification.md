@@ -25,7 +25,7 @@ contract compiler projects needs to be given an opportunity to provide input
 so that the final format can be used across the various languages in the NEO
 ecosystem.
 
-## Current Format
+## Original Format
 
 The NEON-DE compiler emits debug info in a json file with the extension
 .debug.json. This document contains the following types:
@@ -107,3 +107,71 @@ information:
 Debug info can also contain an array of Event objects. Event objects have
 parameter and return types like a Method, but have no implementation
 details such as variables, sequence points or start/end addresses.
+
+## v0.10 Format
+
+The format described above contains a lot of redundant and/or unused data.
+Additionally, some data could be encoded in a more size sensitive manner.
+In v0.10, the following changes are being made to the debug info format:
+
+- Compress the `<contract>.debug.json` file into a
+ `<contract>.debug.zip` file.
+- Removed top level `sequence-points` property since it was
+  not being used.
+- Added a top level `documents` property that contains an array of
+  unique file paths.
+- Changed `document` property of `SequencePoint` to be an index
+  into the top-level `documents` array.
+- Replaced `Method` `start-address` and `end-address` properties
+  with a single `range` property 
+- Replaced `SequencePoint` `start-line`, `start-column`, `end-line`,
+  `end-column` properties with a single `range` property.
+- Removed `Event.return-type` property as the compiler now enforces
+  events as being void return.
+
+``` typescript
+interface DebugInformatiom {
+    entrypoint: string;
+    documents: string[]; // new since previous version
+    methods: Method[];
+    events: Event[];
+    // removed: sequence-points: SequencePoint[];
+}
+
+interface Method {
+    id: string; // previously "name"
+    namespace: string;
+    name: string; // previously "display-name"
+    range: string; // format: "{start-address}-{end-address}
+    // removed: start-address: number;
+    // removed: end-address: number;
+    parameters: Variable[];
+    return-type: string;
+    variables: Variable[];
+    sequence-points: SequencePoint[];
+}
+
+interface Variable {
+    name: string;
+    type: string;
+}
+
+interface Event {
+    name: string;
+    namespace: string;
+    display-name: string;
+    parameters: Variable[];
+    // removed: return-type: string;
+}
+
+interface SequencePoint {
+    address: number;
+    document: number; // index into top level "documents" array.
+                      // Previously string file path
+    range: string // format: "{start-line}:{start-column}-{end-line}:{end-column}
+    // removed: start-line: number;
+    // removed: start-column: number;
+    // removed: end-line: number;
+    // removed: end-column: number;
+}
+```
