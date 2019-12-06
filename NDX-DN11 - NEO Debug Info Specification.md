@@ -114,64 +114,41 @@ The format described above contains a lot of redundant and/or unused data.
 Additionally, some data could be encoded in a more size sensitive manner.
 In v0.10, the following changes are being made to the debug info format:
 
-- Compress the `<contract>.debug.json` file into a
- `<contract>.debug.zip` file.
+- Compress the `<contract>.debug.json` file into a zip file with a
+  `.avmdbgnfo` extension
 - Removed top level `sequence-points` property since it was
   not being used.
 - Added a top level `documents` property that contains an array of
   unique file paths.
-- Changed `document` property of `SequencePoint` to be an index
-  into the top-level `documents` array.
-- Replaced `Method` `start-address` and `end-address` properties
-  with a single `range` property 
-- Replaced `SequencePoint` `start-line`, `start-column`, `end-line`,
-  `end-column` properties with a single `range` property.
-- Removed `Event.return-type` property as the compiler now enforces
+- Renamed method/event `name` property to `id`
+- Encode namespace and name in method/event `name` property
+- Encode method start/end address in `range` property
+- Encode parameter/variable name and type in single string value
+- Encode sequence point information in single string value
+- Removed event `return-type` property as the compiler now enforces
   events as being void return.
 
 ``` typescript
 interface DebugInformatiom {
     entrypoint: string;
-    documents: string[]; // new since previous version
+    documents: string[];
     methods: Method[];
     events: Event[];
-    // removed: sequence-points: SequencePoint[];
 }
 
 interface Method {
-    id: string; // previously "name"
-    namespace: string;
-    name: string; // previously "display-name"
+    id: string;
+    name: string; // format: "{namespace},{display-name}
     range: string; // format: "{start-address}-{end-address}
-    // removed: start-address: number;
-    // removed: end-address: number;
-    parameters: Variable[];
+    parameters: string[]; // format: "{name},{type}
     return-type: string;
-    variables: Variable[];
-    sequence-points: SequencePoint[];
-}
-
-interface Variable {
-    name: string;
-    type: string;
+    variables: string[]; // format: "{name},{type}
+    sequence-points: string[]; // format: "{address}[{document-index}]{start-line}:{start-column}-{end-line}:{end-column}"
 }
 
 interface Event {
-    name: string;
-    namespace: string;
-    display-name: string;
-    parameters: Variable[];
-    // removed: return-type: string;
-}
-
-interface SequencePoint {
-    address: number;
-    document: number; // index into top level "documents" array.
-                      // Previously string file path
-    range: string // format: "{start-line}:{start-column}-{end-line}:{end-column}
-    // removed: start-line: number;
-    // removed: start-column: number;
-    // removed: end-line: number;
-    // removed: end-column: number;
+    id: string; // previously "name"
+    name: string; // format: "{namespace}-{display-name}
+    parameters: string[]; // format: "{name},{type}
 }
 ```
