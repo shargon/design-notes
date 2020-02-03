@@ -108,11 +108,11 @@ Debug info can also contain an array of Event objects. Event objects have
 parameter and return types like a Method, but have no implementation
 details such as variables, sequence points or start/end addresses.
 
-## v0.10 Format
+## v1.0 Format
 
 The format described above contains a lot of redundant and/or unused data.
 Additionally, some data could be encoded in a more size sensitive manner.
-In v0.10, the following changes are being made to the debug info format:
+In v1.0, the following changes are being made to the debug info format:
 
 - Compress the `<contract>.debug.json` file into a zip file with a
   `.avmdbgnfo` extension
