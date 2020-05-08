@@ -1,0 +1,100 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "$id": "http://neo.org/schemas/neo-invoke.json",
+    "type": "object",
+    "required": [
+        "hash",
+        "args"
+    ],
+    "definitions": {
+        "contract-parameter-type": {
+            "type": "string",
+            "enum": [
+                "Signature",
+                "Boolean",
+                "Integer",
+                "Hash160",
+                "Hash256",
+                "ByteArray",
+                "PublicKey",
+                "String",
+                "Array",
+                "Map"
+            ]
+        },
+        "contract-parameter": {
+            "$id": "#contract-parameter",
+            "oneOf": [
+                {
+                    "type": "boolean"
+                },
+                {
+                    "type": "integer"
+                },
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "$ref": "$contract-parameter"
+                    }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "$ref": "#/definitions/contract-parameter-type"
+                        },
+                        "value": {
+                            "oneOf": [
+                                {
+                                    "type": "boolean"
+                                },
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "oneOf": [
+                                            {
+                                                "$ref": "#contract-parameter"
+                                            },
+                                            {
+                                                "type": "object",
+                                                "required": [
+                                                    "key",
+                                                    "value"
+                                                ],
+                                                "properties": {
+                                                    "key": {
+                                                        "$ref": "#contract-parameter"
+                                                    },
+                                                    "value": {
+                                                        "$ref": "#contract-parameter"
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "properties": {
+        "hash": {
+            "type": "string" // hex-encoded ScriptHash
+        },
+        "args": {
+            "type": "array",
+            "items": {
+                "$ref": "#contract-parameter"
+            }
+        }
+    }
+}
