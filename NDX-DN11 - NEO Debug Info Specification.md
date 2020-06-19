@@ -2,7 +2,9 @@
 # NDX-DN11 - NEO Debug Info Specification
 
 - Author: Harry Pierson (harrypierson@ngd.neo.org)
-- Status: Adopted
+- Status:
+  - v1.0: Adopted
+  - v1.1: Draft
 
 ## Abstract
 
@@ -128,6 +130,48 @@ In v1.0, the following changes are being made to the debug info format:
 ``` typescript
 interface DebugInformatiom {
     entrypoint: string;
+    documents: string[];
+    methods: Method[];
+    events: Event[];
+}
+
+interface Method {
+    id: string;
+    name: string; // format: "{namespace},{display-name}
+    range: string; // format: "{start-address}-{end-address}
+    parameters: string[]; // format: "{name},{type}
+    return-type: string;
+    variables: string[]; // format: "{name},{type}
+    sequence-points: string[]; // format: "{address}[{document-index}]{start-line}:{start-column}-{end-line}:{end-column}"
+}
+
+interface Event {
+    id: string; // previously "name"
+    name: string; // format: "{namespace}-{display-name}
+    parameters: string[]; // format: "{name},{type}
+}
+```
+
+## v1.1 Format
+
+In v1.1, the following changes are being made to the debug info format
+to accommodate changes related to Neo 3.
+
+- added top level `hash` property containing the scriptHash for the
+  associated contract
+  - For Neo 2 contract debug info, hash property is optional
+  - For Neo 3 contract debug info, hash property is required
+- made top level `entrypoint` property optional
+  - For Neo 2 contract debug info, hash property is required
+  - For Neo 3 contract debug info, hash property is not used
+- Compressed Neo 3 contract debug info files will use `.nefdbgnfo`
+  for their extension. Compressed Neo 2 contract debug info files 
+  will continue to use the `.avmdbgnfo` extension
+
+``` typescript
+interface DebugInformatiom {
+    hash?: string;
+    entrypoint?: string;
     documents: string[];
     methods: Method[];
     events: Event[];
